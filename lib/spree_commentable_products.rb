@@ -1,5 +1,5 @@
-require "spree_commentable_products/version"
-
-module SpreeCommentableProducts
-  # Your code goes here...
-end
+require 'spree_backend'
+require 'spree_core'
+require 'acts_as_commentable'
+require 'spree_commentable_products/engine'
+require 'spree_commentable_products/version'
