@@ -1,0 +1,12 @@
+<!-- insert_after ".repassa-product-details" -->
+<% if try_spree_current_user %>
+  <%= render partial: 'comments/form', locals: { product: @product } %>
+<% else %>
+  <label class="label label-warning col-sm-12">
+    <span>Para fazer uma pergunta você precisa se logar primeiro.</span>
+  </label>
+<% end %>
+
+<% if @product.comments.any? %>
+  <%= render partial: 'comments/list', locals: { comments: @product.comments } %>
+<% end %>

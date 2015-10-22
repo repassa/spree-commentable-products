@@ -1,4 +1,12 @@
 pt-BR:
+  spree:
+    add_comment: 'Fale com quem repassa'
+    add_comment_subtitle: 'tire suas dúvidas ou faça um elogio'
+    ask: 'Enviar'
+    comment:
+      success: 'Comentário adicionado com sucesso'
+      failure: 'Houve um erro ao adicionar seu comentário'
+
   activerecord:
     models:
       spree_comment:

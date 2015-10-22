@@ -1,0 +1,18 @@
+<table class="index table" data-hook="product-comments-table">
+  <thead>
+    <tr>
+      <th><%= "#{t('spree.date')}/#{t('spree.time')}" %></th>
+      <th><%= Spree.t('activerecord.attributes.comment.user') %></th>
+      <th><%= Spree.t('activerecord.attributes.comment.body') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% comments.reverse.each_with_index do |comment, index| %>
+      <tr class="<%= cycle('odd', 'even')%>">
+        <td class='align-center'><%= pretty_time(comment.created_at) %></td>
+        <td class='align-center'><%= comment.user.try(:email) %></td>
+        <td><%= comment.body.html_safe %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

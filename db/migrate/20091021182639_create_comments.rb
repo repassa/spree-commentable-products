@@ -1,10 +1,11 @@
 class CreateComments < ActiveRecord::Migration
   def self.up
     create_table :spree_comments do |t|
-      t.string :title, limit: 50
       t.text :body
-      t.references :commentable, polymorphic: true
+      t.string :title, limit: 50
       t.references :user
+      t.references :product
+      t.references :commentable, polymorphic: true
 
       t.timestamps
     end
@@ -12,6 +13,7 @@ class CreateComments < ActiveRecord::Migration
     add_index :spree_comments, :commentable_type
     add_index :spree_comments, :commentable_id
     add_index :spree_comments, :user_id
+    add_index :spree_comments, :product_id
   end
 
   def self.down
