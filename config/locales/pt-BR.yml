@@ -16,7 +16,6 @@ pt-BR:
 
     attributes:
       spree_comment:
-        title: 'Título'
         body: 'Mensagem'
         commentable: 'Comentário pai'
         user: 'Usuário'

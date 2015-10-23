@@ -18,7 +18,7 @@ module Spree
     # method to define attributes based on some policy...
     # In this case you need to define it manually
     def permitted_params
-      params.require(:comment).permit([:title, :body, :commentable_id, :commentable_type])
+      params.require(:comment).permit([:body, :commentable_id, :commentable_type])
     end
   end
 end

@@ -2,7 +2,6 @@ class CreateComments < ActiveRecord::Migration
   def self.up
     create_table :spree_comments do |t|
       t.text :body
-      t.string :title, limit: 50
       t.references :user
       t.references :product
       t.references :commentable, polymorphic: true
