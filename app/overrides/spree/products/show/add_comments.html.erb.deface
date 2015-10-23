@@ -1,15 +1,19 @@
 <!-- insert_after ".repassa-product-details" -->
-<% if try_spree_current_user && @product.seller_id != try_spree_current_user.try(:id) %>
-  <div class="col-md-12 product-comment-form" data-hook="product-comment-form">
-    <legend align="center"><%= Spree.t(:add_comment) %></legend>
-    <%= render partial: 'comments/form', locals: { product: @product, comment: Spree::Comment.new(product: @product) } %>
-  </div>
-<% elsif try_spree_current_user == nil %>
-  <label class="label label-warning col-sm-12">
-    <span>Para fazer uma pergunta você precisa se logar primeiro.</span>
-  </label>
-<% end %>
+<div class="row">
+  <header class="repassa-header-text repassa-message-header text-center">
+    <h2 class="text-lowercase"><%= Spree.t(:add_comment) %></h2>
+    <%= Spree.t(:add_comment_subtitle) %>
+  </header>
 
-<% if @product.comments.any? %>
-  <%= render partial: 'comments/list', locals: { comments: @product.comments } %>
-<% end %>
+  <% if try_spree_current_user && @product.seller_id != try_spree_current_user.try(:id) %>
+    <%= render partial: 'comments/form', locals: { comment: Spree::Comment.new(product: @product) } %>
+  <% elsif try_spree_current_user == nil %>
+    <h4 class="text-center">Para fazer uma pergunta você precisa se logar primeiro.</h4>
+  <% end %>
+
+  <% if @product.comments.any? %>
+    <% @product.comments.reverse.each_with_index do |_comment, index| %>
+      <%= render partial: 'comments/list', locals: { comment: _comment, product: @product } %>
+    <% end %>
+  <% end %>
+</div>

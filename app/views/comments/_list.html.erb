@@ -1,26 +1,23 @@
-<table class="index table" data-hook="product-comments-table">
-  <thead>
-    <tr>
-      <th><%= "#{t('spree.date')}/#{t('spree.time')}" %></th>
-      <th><%= t('activerecord.attributes.spree_comment.user') %></th>
-      <th><%= t('activerecord.attributes.spree_comment.body') %></th>
-      <th><%= t('spree.answer') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% comments.reverse.each_with_index do |_comment, index| %>
-      <tr class="<%= cycle('odd', 'even')%>">
-        <td class='align-center'><%= pretty_time(_comment.created_at) %></td>
-        <td class='align-center'><%= _comment.user.try(:email) %></td>
-        <td><%= _comment.body.html_safe %></td>
-        <td>
-          <% if _comment.answered? %>
-            <%= _comment.answer.body.html_safe %>
-          <% elsif @product.seller_id == try_spree_current_user.try(:id) %>
-            <%= render partial: 'comments/form', locals: { product: @product, comment: _comment.build_answer } %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="message-box-wrapper clearfix">
+  <div class="message-box-item">
+    <article class="message-box">
+      <%= image_tag comment.user.profile_image_url(:thumb), size: '40x40', class: 'message-box-image' %>
+      <span class="message-box-info"><%= "#{comment.user.first_name} - perguntou há #{time_ago_in_words(comment.created_at)} - #{product.name}" %></span>
+      <p class="message-box-content"><%= comment.body %></p>
+    </article>
+  </div>
+
+  <% if comment.answer.present? %>
+    <div class="message-box-item">
+      <article class="message-box">
+        <span class="message-box-info"><%= Spree.t(:answer) %></span>
+        <p class="message-box-content"><%= comment.answer.body %></p>
+      </article>
+    </div>
+
+  <% elsif @product.seller_id == try_spree_current_user.try(:id) %>
+    <div class="message-box-item">
+      <%= render partial: 'comments/form', locals: { comment: comment.build_answer } %>
+    </div>
+  <% end %>
+</div>

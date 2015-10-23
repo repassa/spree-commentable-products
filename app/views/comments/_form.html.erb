@@ -2,20 +2,10 @@
   <%= f.hidden_field :product_id %>
   <%= f.hidden_field :commentable_id %>
   <%= f.hidden_field :commentable_type %>
-  <fieldset data-hook="admin_comment_form_fields" class="no-border-top">
-    <div data-hook="comment_fields" class="row">
-      <div class="col-md-12">
-        <div class="field">
-          <%= f.label :body, t('activerecord.attributes.spree_comment.body') %>
-          <%= f.text_field :body, style: 'height:150px;', class: 'form-control', maxlength: '140' %>
-        </div>
-      </div>
-    </div>
-  </fieldset>
-
-  <div class="clear"></div>
-
-  <div class="form-buttons filter-actions actions" data-hook="buttons">
-    <%= button Spree.t(:ask), 'icon-arrow-right' %>
-  </div>
+  <article class="message-box message-box-answer js-answer-box">
+    <%= f.text_area :body, class: 'js-answer-input message-box-input' %>
+    <span class="message-box-submit">
+      <%= button Spree.t(:ask), '' %>
+    </span>
+  </article>
 <% end %>
