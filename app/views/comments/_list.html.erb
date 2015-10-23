@@ -2,16 +2,24 @@
   <thead>
     <tr>
       <th><%= "#{t('spree.date')}/#{t('spree.time')}" %></th>
-      <th><%= Spree.t('activerecord.attributes.comment.user') %></th>
-      <th><%= Spree.t('activerecord.attributes.comment.body') %></th>
+      <th><%= t('activerecord.attributes.spree_comment.user') %></th>
+      <th><%= t('activerecord.attributes.spree_comment.body') %></th>
+      <th><%= t('spree.answer') %></th>
     </tr>
   </thead>
   <tbody>
-    <% comments.reverse.each_with_index do |comment, index| %>
+    <% comments.reverse.each_with_index do |_comment, index| %>
       <tr class="<%= cycle('odd', 'even')%>">
-        <td class='align-center'><%= pretty_time(comment.created_at) %></td>
-        <td class='align-center'><%= comment.user.try(:email) %></td>
-        <td><%= comment.body.html_safe %></td>
+        <td class='align-center'><%= pretty_time(_comment.created_at) %></td>
+        <td class='align-center'><%= _comment.user.try(:email) %></td>
+        <td><%= _comment.body.html_safe %></td>
+        <td>
+          <% if _comment.answered? %>
+            <%= _comment.answer.body.html_safe %>
+          <% elsif @product.seller_id == try_spree_current_user.try(:id) %>
+            <%= render partial: 'comments/form', locals: { product: @product, comment: _comment.build_answer } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

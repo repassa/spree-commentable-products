@@ -1,7 +1,10 @@
 <!-- insert_after ".repassa-product-details" -->
-<% if try_spree_current_user %>
-  <%= render partial: 'comments/form', locals: { product: @product } %>
-<% else %>
+<% if try_spree_current_user && @product.seller_id != try_spree_current_user.try(:id) %>
+  <div class="col-md-12 product-comment-form" data-hook="product-comment-form">
+    <legend align="center"><%= Spree.t(:add_comment) %></legend>
+    <%= render partial: 'comments/form', locals: { product: @product, comment: Spree::Comment.new(product: @product) } %>
+  </div>
+<% elsif try_spree_current_user == nil %>
   <label class="label label-warning col-sm-12">
     <span>Para fazer uma pergunta você precisa se logar primeiro.</span>
   </label>

@@ -3,6 +3,7 @@ pt-BR:
     add_comment: 'Fale com quem repassa'
     add_comment_subtitle: 'tire suas dúvidas ou faça um elogio'
     ask: 'Enviar'
+    answer: 'Resposta'
     comment:
       success: 'Comentário adicionado com sucesso'
       failure: 'Houve um erro ao adicionar seu comentário'

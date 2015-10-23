@@ -9,7 +9,7 @@ module Spree
       @comment.user = try_spree_current_user
       # Set the message depending on the state of the .save method
       @comment.save ? (flash[:success] = t('spree.comment.success')) : (flash[:error] = t('spree.comment.failure'))
-      redirect_to spree.product_path(@comment.product_id)
+      redirect_to spree.product_path(@comment.product_id || @comment.commentable.product_id)
     end
 
     protected
@@ -18,7 +18,7 @@ module Spree
     # method to define attributes based on some policy...
     # In this case you need to define it manually
     def permitted_params
-      params.require(:comment).permit([:title, :body, :product_id])
+      params.require(:comment).permit([:title, :body, :commentable_id, :commentable_type])
     end
   end
 end

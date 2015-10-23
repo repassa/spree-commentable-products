@@ -2,6 +2,8 @@
 
 This gem provides a commentary system for products where the customers can comment
 inside product's page (if logged in) and allow the seller to reply back this comment.
+For the moment this gem doesn't provide a way to reply from inside user's dashboard,
+but this is a roadmap feature and will implemented in the future.
 
 # Spree versions support
 
