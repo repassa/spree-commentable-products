@@ -7,7 +7,7 @@ module Spree
       @comment      = Spree::Comment.new(permitted_params)
       @comment.user = try_spree_current_user
       # Set the message depending on the state of the .save method
-      @comment.save ? (flash[:success] = t('spree.comment.success')) : (flash[:error] = t('spree.comment.failure'))
+      @comment.save ? (flash.success = t('spree.comment.success')) : (flash.error = t('spree.comment.failure'))
       redirect_to product_path(@comment.product.slug || @comment.commentable.product.slug)
     end
 
