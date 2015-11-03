@@ -10,6 +10,7 @@ module Spree
     has_one :answer, as: :commentable, class_name: 'Spree::Comment'
 
     validates :user, :body, presence: true
+    validates :body, length: { in: 1..140 }
     validates :product, presence: true, unless: 'commentable.present?'
 
     default_scope { order(created_at: :desc) }
