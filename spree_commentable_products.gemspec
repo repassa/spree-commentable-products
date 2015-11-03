@@ -6,7 +6,7 @@ require "spree_commentable_products/version"
 Gem::Specification.new do |spec|
   spec.name          = "spree_commentable_products"
   spec.version       = SpreeCommentableProducts::VERSION
-  spec.authors       = ["Patrick Edgar Müller"]
+  spec.authors       = ["Patrick Edgar Müller"]
   spec.email         = ["patrick.e.muller@gmail.com"]
   spec.required_ruby_version = ">= 1.9.3"
 
@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "spree_core", "2.3.1"
-  spec.add_dependency "spree_backend", "2.3.1"
-  spec.add_dependency "spree_frontend", "2.3.1"
+  spec.add_dependency "spree_core", "~> 2.3.1"
+  spec.add_dependency "spree_backend", "~> 2.3.1"
+  spec.add_dependency "spree_frontend", "~> 2.3.1"
   spec.add_dependency "acts_as_commentable", "4.0.1"
 
   spec.add_development_dependency "pry"
